@@ -11,6 +11,7 @@ public class RegularExpr {
 		Matcher c = p.matcher(check);
 		
 		while (c.find())
+			
 	      	System.out.println( check.substring( c.start(), c.end() ) );
 
 
