@@ -5,7 +5,7 @@ public class Menus {
 		System.out.println("Welcome to File Handling");
 	}
 	public void mainmenu() {
-		System.out.println("\nPlease select the operation:\n\n 1.Add new file\n 2.Delete file\n 3.Search files\n 4.Write to an existing file \n 5.QUIT");
+		System.out.println("\nPlease select the operation:\n\n 1.Add new file\n 2.Delete file\n 3.List files\n 4.Write to an existing file \n 5.QUIT");
 	}
 	public void insertnew() {
 		System.out.println("Please insert new file: ");

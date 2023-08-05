@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Operations {
 	
@@ -47,19 +48,25 @@ public class Operations {
     		System.out.println(e);
     	}
 	}
-	public ArrayList searchEmail(String a) {
-		ArrayList<String> emailsfounded=new ArrayList<String>(); 
-		String pattern = a;
-		Pattern p = Pattern.compile(pattern);
-		Iterator<String> itr=emails.iterator();
-		while(itr.hasNext()){
-			String b=itr.next();
-			Matcher c = p.matcher(b);
-			if(c.find()) {
-				emailsfounded.add(b);
-			}			
-		} 
-		return emailsfounded;
+	public void listFiles(String a) throws IOException {
+		
+		String directory = "//home//javiergonzalezv//Desktop//ExercisesTemp//";
+		File f = new File(directory);
+		if(f.exists()) {
+			File[] files = f.listFiles();
+			for (File file: files) {
+				if(file.isFile()) {
+					System.out.println("File:\t"+file.getName());					
+				}
+				if(file.isDirectory()) {
+					System.out.println("Directory:t"+file.getName());					
+				}
+			}
+	
+		}else {
+			System.out.println("Sorry, Directory:\n  /home/javiergonzalezv/Desktop/ExercisesTemp/\n doesn't exist.");
+		}
+		
 	}
 
 }
