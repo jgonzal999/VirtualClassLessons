@@ -4,22 +4,25 @@ public class Menus {
 	public void welcome() {
 		System.out.println("Welcome to File Handling");
 	}
-	public void mainmenu() {
+	public void mainMenu() {
 		System.out.println("\nPlease select the operation:\n\n 1.Add new file\n 2.Delete file\n 3.List files\n 4.Write to an existing file \n 5.QUIT");
 	}
-	public void insertnew() {
+	public void insertNew() {
 		System.out.println("Please insert new file: ");
 	}
-	public void insertdel() {
+	public void insertDel() {
 		System.out.printf("Please insert file to delete (complete): ");
 	}
-	public void insertsearch() {
-		System.out.printf("Please insert file to search (complete or part of it): ");
+	public void insertSearch() {
+		System.out.printf("Please insert directory to list it");
 	}
-	public void insertfile() {
+	public void insertDirectory() {
+		System.out.printf("Please insert directory to list it");
+	}
+	public void insertFile() {
 		System.out.printf("Please insert file to write on: ");
 	}
-	public void inserttext() {
+	public void insertText() {
 		System.out.printf("Please insert text: ");
 	}
 	public void cont() {

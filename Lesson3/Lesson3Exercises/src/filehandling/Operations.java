@@ -52,6 +52,7 @@ public class Operations {
 	public void listFiles(String a) throws IOException {
 		
 		//String directory = "//home//javiergonzalezv//Desktop//ExercisesTemp//";
+		
 		String directory = new String();
 		for (int i=0;i<a.length();i++) {
 			directory+=a.charAt(i);
@@ -72,19 +73,37 @@ public class Operations {
 			}
 	
 		}else {
-			System.out.println("Sorry, Directory:\n  /home/javiergonzalezv/Desktop/ExercisesTemp/\n doesn't exist.");
+			System.out.println("Sorry, Directory:\n  "+a+"\n doesn't exist.");
 		}
 		
 	}
 	
-	public void writeFile(String a) throws IOException {
+	public void writeFile(String a, String b) throws IOException {
+		String directory = new String();
+		for (int i=0;i<a.length();i++) {
+			directory+=a.charAt(i);
+			if (a.charAt(i)=='/') {
+				directory+="/";
+			}
+		}
+		File f = new File(directory);
+		if (f.exists()) {
+			File file = new File(directory+b);
+			if (file.exists()) {
+				DataInputStream dis = new DataInputStream(System.in);
+				FileOutputStream fos = new FileOutputStream(file.toString(),true);
+			}else {
+				System.out.println("Sorry, file: "+file+"doesn't exists.");
+			}
+		}else {
+			System.out.println("Sorry, directory: "+f+"doesn't exists.");
+		}
+		directory+=b;
 		File file = new File(a);		
 		try {
 			if (file.exists()) {
-				DataInputStream dis = new DataInputStream(System.in);
-				FileOutputStream fos = new FileOutputStream(a,true);
+				
 				System.out.println("Please enter the data you want to write on the file (type # to finish)");
-				file.delete();
 				System.out.println("File is deleted!");
 			}else {
 				System.out.println("Sorry, file:\n "+file+"\n doesn't exist.");
