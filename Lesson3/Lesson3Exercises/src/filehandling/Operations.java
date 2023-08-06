@@ -3,6 +3,7 @@ package filehandling;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.*;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -35,7 +36,7 @@ public class Operations {
         }
 	}
 	public void delFile(String a) throws IOException {
-		File file = new File(a);
+		File file = new File("//home//javiergonzalezv//Desktop//ExercisesTemp//"+a);
 		try {
 			if (file.exists()) {
 				file.delete();
@@ -50,7 +51,14 @@ public class Operations {
 	}
 	public void listFiles(String a) throws IOException {
 		
-		String directory = "//home//javiergonzalezv//Desktop//ExercisesTemp//";
+		//String directory = "//home//javiergonzalezv//Desktop//ExercisesTemp//";
+		String directory = new String();
+		for (int i=0;i<a.length();i++) {
+			directory+=a.charAt(i);
+			if (a.charAt(i)=='/') {
+				directory+="/";
+			}
+		}
 		File f = new File(directory);
 		if(f.exists()) {
 			File[] files = f.listFiles();
@@ -66,6 +74,25 @@ public class Operations {
 		}else {
 			System.out.println("Sorry, Directory:\n  /home/javiergonzalezv/Desktop/ExercisesTemp/\n doesn't exist.");
 		}
+		
+	}
+	
+	public void writeFile(String a) throws IOException {
+		File file = new File(a);		
+		try {
+			if (file.exists()) {
+				DataInputStream dis = new DataInputStream(System.in);
+				FileOutputStream fos = new FileOutputStream(a,true);
+				System.out.println("Please enter the data you want to write on the file (type # to finish)");
+				file.delete();
+				System.out.println("File is deleted!");
+			}else {
+				System.out.println("Sorry, file:\n "+file+"\n doesn't exist.");
+			}
+		}catch (Exception e) {
+    		System.out.println("Sorry, file:\n "+file+"\n cannot be deleted.");
+    		System.out.println(e);
+    	}
 		
 	}
 
