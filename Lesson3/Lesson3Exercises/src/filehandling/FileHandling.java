@@ -17,12 +17,22 @@ public class FileHandling {
 		menu.welcome();		
 		do {
 			do {
-				menu.mainMenu();
+				menu.mainMenu(oper.defdirectory);
 				op = sc.nextInt();
-			}while (op<1 || op>5);
-			if (op>0 && op<5) {
+			}while (op<1 || op>6);
+			if (op>0 && op<6) {
 				switch(op) {
 					case 1:
+						menu.insertDirectory();
+						a = sc.next();
+						try {
+							oper.workDirectory(a);
+						}catch(Exception e) {
+							menu.sorry();
+						}
+						
+						break;
+					case 2:
 						menu.insertNew();
 						a = sc.next();
 						try {
@@ -32,7 +42,7 @@ public class FileHandling {
 						}
 						
 						break;
-					case 2:
+					case 3:
 						menu.insertDel();
 						a = sc.next();
 						try {
@@ -41,7 +51,7 @@ public class FileHandling {
 							menu.sorry();
 						}
 						break;
-					case 3:
+					case 4:
 						menu.insertDirectory();
 						a = sc.next();
 						try {
@@ -50,7 +60,7 @@ public class FileHandling {
 							menu.sorry();
 						}
 						break;
-					case 4:
+					case 5:
 						menu.insertDirectory();
 						a = sc.next();
 						menu.insertFile();
@@ -70,7 +80,7 @@ public class FileHandling {
 					op=0;
 				}
 			}
-		}while(op!=5);
+		}while(op!=6);
 		menu.bye();
 
 	}

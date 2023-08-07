@@ -18,8 +18,27 @@ import java.util.ListIterator;
 
 public class Operations {
 	
-	String defaultdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//"); 
-	
+	String defdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//"); 
+	public void workDirectory(String a) throws IOException {
+		
+		//String directory = "//home//javiergonzalezv//Desktop//ExercisesTemp//";
+		
+		String directory = new String();
+		for (int i=0;i<a.length();i++) {
+			directory+=a.charAt(i);
+			if (a.charAt(i)=='/') {
+				directory+="/";
+			}
+		}
+		File f = new File(directory);
+		if(f.exists()) {
+			System.out.println("OK, Work Directory exists.");	
+			defdirectory= f.toString();	
+		}else {
+			System.out.println("Sorry, Directory:\n  "+a+"\n doesn't exist.");
+		}
+		
+	}
 	public void addNewFile(String a) throws IOException {
 		//I find .txt, if not I add it
 		String pattern = ".txt";
@@ -28,7 +47,7 @@ public class Operations {
 		if (!c.find()) {
 			a+=".txt";
 		}
-		File file = new File("//home//javiergonzalezv//Desktop//ExercisesTemp//"+a);
+		File file = new File(defdirectory+a);
         if (file.createNewFile()){
           System.out.println("File is created!");
         }else{
@@ -36,7 +55,7 @@ public class Operations {
         }
 	}
 	public void delFile(String a) throws IOException {
-		File file = new File("//home//javiergonzalezv//Desktop//ExercisesTemp//"+a);
+		File file = new File(defdirectory+a);
 		try {
 			if (file.exists()) {
 				file.delete();
@@ -54,10 +73,15 @@ public class Operations {
 		//String directory = "//home//javiergonzalezv//Desktop//ExercisesTemp//";
 		
 		String directory = new String();
-		for (int i=0;i<a.length();i++) {
-			directory+=a.charAt(i);
-			if (a.charAt(i)=='/') {
-				directory+="/";
+
+		if (a.equals("d")) {
+			directory= defdirectory;
+		}else {
+			for (int i=0;i<a.length();i++) {
+				directory+=a.charAt(i);
+				if (a.charAt(i)=='/') {
+					directory+="/";
+				}
 			}
 		}
 		File f = new File(directory);
@@ -68,22 +92,26 @@ public class Operations {
 					System.out.println("File:\t"+file.getName());					
 				}
 				if(file.isDirectory()) {
-					System.out.println("Directory:t"+file.getName());					
+					System.out.println("Directory:\t"+file.getName());					
 				}
 			}
 	
 		}else {
-			System.out.println("Sorry, Directory:\n  "+a+"\n doesn't exist.");
+			System.out.println("Sorry, Directory:\n "+a+"\n doesn't exist.");
 		}
 		
 	}
 	
 	public void writeFile(String a, String b) throws IOException {
 		String directory = new String();
-		for (int i=0;i<a.length();i++) {
-			directory+=a.charAt(i);
-			if (a.charAt(i)=='/') {
-				directory+="/";
+		if (a.equals("d")) {
+			directory= defdirectory;
+		}else {
+			for (int i=0;i<a.length();i++) {
+				directory+=a.charAt(i);
+				if (a.charAt(i)=='/') {
+					directory+="/";
+				}
 			}
 		}
 		try {
@@ -94,7 +122,9 @@ public class Operations {
 					DataInputStream dis = new DataInputStream(System.in);
 					FileOutputStream fos = new FileOutputStream(file.toString(),true);
 					System.out.println("Please enter the data you want to write on the file (type ENTER to finish)");
+//					String retorno = new String("\n");
 					int ch;
+					fos.write((int)'\n');
 					while( (ch = dis.read()) != '\n') {		// when we hit enter key it will stop reading data. 
 						fos.write(ch);	// in file automatically convert it
 					}

@@ -2,10 +2,11 @@ package filehandling;
 
 public class Menus {
 	public void welcome() {
-		System.out.println("Welcome to File Handling");
+		System.out.println("*** Welcome to File Handling ***");
 	}
-	public void mainMenu() {
-		System.out.println("\nPlease select the operation:\n\n 1.Add new file\n 2.Delete file\n 3.List files\n 4.Write to an existing file \n 5.QUIT");
+	public void mainMenu(String a) {
+		System.out.println("\nWorking Directory: "+a);
+		System.out.println("\nPlease select the operation:\n\n 1.Add work directory\n 2.Add new file\n 3.Delete file\n 4.List files\n 5.Write to an existing file \n 6.QUIT");
 	}
 	public void insertNew() {
 		System.out.println("Please insert new file: ");
@@ -14,7 +15,7 @@ public class Menus {
 		System.out.printf("Please insert file to delete (complete): ");
 	}
 	public void insertDirectory() {
-		System.out.printf("Please insert directory: ");
+		System.out.printf("Please insert directory ('d' for default): ");
 	}
 	public void insertFile() {
 		System.out.printf("Please insert file to write on: ");
