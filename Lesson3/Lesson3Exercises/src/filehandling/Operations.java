@@ -18,7 +18,7 @@ import java.util.ListIterator;
 
 public class Operations {
 	
-	ArrayList<String> emails=new ArrayList<String>(); 
+	String defaultdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//"); 
 	
 	public void addNewFile(String a) throws IOException {
 		//I find .txt, if not I add it
@@ -86,30 +86,26 @@ public class Operations {
 				directory+="/";
 			}
 		}
-		File f = new File(directory);
-		if (f.exists()) {
-			File file = new File(directory+b);
-			if (file.exists()) {
-				DataInputStream dis = new DataInputStream(System.in);
-				FileOutputStream fos = new FileOutputStream(file.toString(),true);
-			}else {
-				System.out.println("Sorry, file: "+file+"doesn't exists.");
-			}
-		}else {
-			System.out.println("Sorry, directory: "+f+"doesn't exists.");
-		}
-		directory+=b;
-		File file = new File(a);		
 		try {
-			if (file.exists()) {
-				
-				System.out.println("Please enter the data you want to write on the file (type # to finish)");
-				System.out.println("File is deleted!");
+			File f = new File(directory);
+			if (f.exists()) {
+				File file = new File(directory+b);
+				if (file.exists()) {
+					DataInputStream dis = new DataInputStream(System.in);
+					FileOutputStream fos = new FileOutputStream(file.toString(),true);
+					System.out.println("Please enter the data you want to write on the file (type ENTER to finish)");
+					int ch;
+					while( (ch = dis.read()) != '\n') {		// when we hit enter key it will stop reading data. 
+						fos.write(ch);	// in file automatically convert it
+					}
+				}else {
+					System.out.println("Sorry, file: "+file+"doesn't exists.");
+				}
 			}else {
-				System.out.println("Sorry, file:\n "+file+"\n doesn't exist.");
+				System.out.println("Sorry, directory: "+f+"doesn't exists.");
 			}
 		}catch (Exception e) {
-    		System.out.println("Sorry, file:\n "+file+"\n cannot be deleted.");
+    		System.out.println("Sorry, try again");
     		System.out.println(e);
     	}
 		

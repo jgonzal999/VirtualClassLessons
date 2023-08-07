@@ -13,11 +13,8 @@ public class Menus {
 	public void insertDel() {
 		System.out.printf("Please insert file to delete (complete): ");
 	}
-	public void insertSearch() {
-		System.out.printf("Please insert directory to list it");
-	}
 	public void insertDirectory() {
-		System.out.printf("Please insert directory to list it");
+		System.out.printf("Please insert directory: ");
 	}
 	public void insertFile() {
 		System.out.printf("Please insert file to write on: ");
@@ -30,6 +27,9 @@ public class Menus {
 	}
 	public void bye() {
 		System.out.println("Bye, thank you for using our products!");
+	}
+	public void sorry() {
+		System.out.println("Sorry, try it again!");
 	}
 
 
