@@ -19,8 +19,8 @@ public class FileHandling {
 			do {
 				menu.mainMenu(oper.defdirectory);
 				op = sc.nextInt();
-			}while (op<1 || op>6);
-			if (op>0 && op<6) {
+			}while (op<1 || op>7);
+			if (op>0 && op<7) {
 				switch(op) {
 					case 1:
 						menu.insertDirectory();
@@ -71,6 +71,17 @@ public class FileHandling {
 							menu.sorry();
 						}
 						break;
+					case 6:
+						menu.insertDirectory();
+						a = sc.next();
+						menu.readFile();
+						b=sc.next();
+						try {
+							oper.readFile(a,b);
+						}catch(Exception e) {
+							menu.sorry();
+						}
+						break;
 				}
 						
 			}else {
@@ -80,7 +91,7 @@ public class FileHandling {
 					op=0;
 				}
 			}
-		}while(op!=6);
+		}while(op!=7);
 		menu.bye();
 
 	}

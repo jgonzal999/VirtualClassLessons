@@ -6,6 +6,7 @@ import java.util.regex.*;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -97,7 +98,7 @@ public class Operations {
 			}
 	
 		}else {
-			System.out.println("Sorry, Directory:\n "+a+"\n doesn't exist.");
+			System.out.println("Sorry, Directory:\n "+a.replace("//", "/")+"\n doesn't exist.");
 		}
 		
 	}
@@ -122,23 +123,61 @@ public class Operations {
 					DataInputStream dis = new DataInputStream(System.in);
 					FileOutputStream fos = new FileOutputStream(file.toString(),true);
 					System.out.println("Please enter the data you want to write on the file (type ENTER to finish)");
-//					String retorno = new String("\n");
 					int ch;
 					fos.write((int)'\n');
 					while( (ch = dis.read()) != '\n') {		// when we hit enter key it will stop reading data. 
 						fos.write(ch);	// in file automatically convert it
+					
 					}
 				}else {
 					System.out.println("Sorry, file: "+file+"doesn't exists.");
 				}
 			}else {
-				System.out.println("Sorry, directory: "+f+"doesn't exists.");
+				System.out.println("Sorry, directory: "+f.getName().replace("//", "/")+"doesn't exists.");
 			}
 		}catch (Exception e) {
     		System.out.println("Sorry, try again");
     		System.out.println(e);
     	}
-		
+
+	}
+	public void readFile(String a, String b) throws IOException {
+		String directory = new String();
+		if (a.equals("d")) {
+			directory= defdirectory;
+		}else {
+			for (int i=0;i<a.length();i++) {
+				directory+=a.charAt(i);
+				if (a.charAt(i)=='/') {
+					directory+="/";
+				}
+			}
+		}
+		try {
+			File f = new File(directory);
+			if (f.exists()) {
+				File file = new File(directory+b);
+				if (file.exists()) {
+					System.out.println("Reading file: ");
+					FileReader readfile = new FileReader(file);
+					int leter;
+					String text = new String(" ");
+					while ((leter=readfile.read()) != -1) {
+						text+=(char)leter;
+					}
+					System.out.println(text.replace("\n", "\n "));
+					readfile.close();
+				}else {
+					System.out.println("Sorry, file: "+file+"doesn't exists.");
+				}
+			}else {
+				System.out.println("Sorry, directory: "+f.getName().replace("//", "/")+"doesn't exists.");
+			}
+		}catch (Exception e) {
+    		System.out.println("Sorry, try again");
+    		System.out.println(e);
+    	}
+
 	}
 
 }
