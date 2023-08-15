@@ -126,7 +126,7 @@ public class Operations {
 					int lastch=0;
 					boolean exit=false;
 					fos.write((int)'\n');
-					while((int)(ch = dis.read())>0) {		// when we hit enter key it will stop reading data. 
+					while(!((ch = dis.read()) == '\n' && exit)) {		// when we hit enter key it will stop reading data. 
 						if(!exit) {
 							if (ch==escape) {
 								if (lastch!=escape) {
@@ -141,12 +141,12 @@ public class Operations {
 								fos.write(ch);
 								lastch =ch;
 							}
-						}
-						dis.close();
-						fos.close();
-						break;
+						}						
+						
 					}
-					
+					System.out.println(ch = dis.read());
+					dis.close();
+					fos.close();	
 				}else {
 					System.out.println("Sorry, file: "+file+"doesn't exists.");
 				}

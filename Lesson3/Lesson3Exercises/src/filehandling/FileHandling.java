@@ -8,7 +8,7 @@ public class FileHandling {
 	public static void main(String[] args) {
 		Menus menu = new Menus();
 		Operations oper = new Operations();
-		Scanner sc = new Scanner(System.in);
+		
 		int op;
 		char ex ='n';
 		String a;
@@ -16,6 +16,7 @@ public class FileHandling {
 		//main
 		menu.welcome();		
 		do {
+			Scanner sc = new Scanner(System.in);
 			do {
 				menu.mainMenu(oper.defdirectory);
 				op = sc.nextInt();
