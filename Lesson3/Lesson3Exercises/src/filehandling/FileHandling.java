@@ -29,6 +29,7 @@ public class FileHandling {
 							oper.workDirectory(a);
 						}catch(Exception e) {
 							menu.sorry();
+							System.out.println(e);
 						}						
 						break;
 					case 2:
@@ -38,6 +39,7 @@ public class FileHandling {
 							oper.addNewFile(a);
 						}catch(Exception e) {
 							menu.sorry();
+							System.out.println(e);
 						}						
 						break;
 					case 3:
@@ -47,6 +49,7 @@ public class FileHandling {
 							oper.delFile(a);
 						}catch(Exception e) {
 							menu.sorry();
+							System.out.println(e);
 						}
 						break;
 					case 4:

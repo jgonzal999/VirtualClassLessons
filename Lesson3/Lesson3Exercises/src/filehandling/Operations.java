@@ -50,7 +50,6 @@ public class Operations {
 		}
 		File file = new File(defdirectory+a);
         if (file.createNewFile()){
-        	System.out.println(defdirectory);
         	System.out.println("File is created!");
         }else{
         	System.out.println("Sorry, file:\n "+file+"\nalready exists.");
@@ -71,9 +70,7 @@ public class Operations {
     	}
 	}
 	public void listFiles(String a) throws IOException {
-		
-		//String directory = "//home//javiergonzalezv//Desktop//ExercisesTemp//";
-		
+				
 		String directory = new String();
 
 		if (a.equals("d")) {
@@ -123,13 +120,33 @@ public class Operations {
 				if (file.exists()) {
 					DataInputStream dis = new DataInputStream(System.in);
 					FileOutputStream fos = new FileOutputStream(file.toString(),true);
-					System.out.println("Please enter the data you want to write on the file (type ENTER to finish)");
+					System.out.println("Please enter the data you want to write on the file (type %% to finish)");
 					int ch;
+					char escape= '%';
+					int lastch=0;
+					boolean exit=false;
 					fos.write((int)'\n');
-					while( (ch = dis.read()) != '\n') {		// when we hit enter key it will stop reading data. 
-						fos.write(ch);	// in file automatically convert it
-					
+					while((int)(ch = dis.read())>0) {		// when we hit enter key it will stop reading data. 
+						if(!exit) {
+							if (ch==escape) {
+								if (lastch!=escape) {
+									lastch =ch;
+								}else {
+									exit=true;
+								}
+							}else{
+								if (lastch==escape) {
+									fos.write(lastch);	// in file automatically convert it
+								}
+								fos.write(ch);
+								lastch =ch;
+							}
+						}
+						dis.close();
+						fos.close();
+						break;
 					}
+					
 				}else {
 					System.out.println("Sorry, file: "+file+"doesn't exists.");
 				}
