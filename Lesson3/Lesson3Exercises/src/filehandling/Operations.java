@@ -21,9 +21,7 @@ public class Operations {
 	
 	String defdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//"); 
 	public void workDirectory(String a) throws IOException {
-		
-		//String directory = "//home//javiergonzalezv//Desktop//ExercisesTemp//";
-		
+
 		String directory = new String();
 		for (int i=0;i<a.length();i++) {
 			directory+=a.charAt(i);
@@ -50,9 +48,10 @@ public class Operations {
 		}
 		File file = new File(defdirectory+a);
         if (file.createNewFile()){
-          System.out.println("File is created!");
+        	System.out.println(defdirectory);
+        	System.out.println("File is created!");
         }else{
-          System.out.println("Sorry, file:\n "+file+"\nalready exists.");
+        	System.out.println("Sorry, file:\n "+file+"\nalready exists.");
         }
 	}
 	public void delFile(String a) throws IOException {

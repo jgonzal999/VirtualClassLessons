@@ -9,22 +9,22 @@ public class Menus {
 		System.out.println("\nPlease select the operation:\n\n 1.Add work directory\n 2.Add new file\n 3.Delete file\n 4.List files\n 5.Write to an existing file \n 6.Read an existing file \n\n 7.QUIT");
 	}
 	public void insertNew() {
-		System.out.println("Please insert new file: ");
+		System.out.println("Please, enter new file: ");
 	}
 	public void insertDel() {
-		System.out.printf("Please insert file to delete (complete): ");
+		System.out.printf("Please, enter file to delete (complete): ");
 	}
 	public void insertDirectory() {
-		System.out.printf("Please insert directory ('d' for default): ");
+		System.out.printf("Please, enter directory ('d' for default): ");
 	}
 	public void insertFile() {
-		System.out.printf("Please insert file to write on: ");
+		System.out.printf("Please, enter file to write to it: ");
 	}
 	public void readFile() {
-		System.out.printf("Please insert file to read: ");
+		System.out.printf("Please, enter file to read it: ");
 	}
 	public void insertText() {
-		System.out.printf("Please insert text: ");
+		System.out.printf("Please, enter text: ");
 	}
 	public void cont() {
 		System.out.println("Do you really want to quit the app? (y/n): ");
