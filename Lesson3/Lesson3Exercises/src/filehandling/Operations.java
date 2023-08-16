@@ -103,7 +103,7 @@ public class Operations {
 		
 	}
 	
-	public void writeFile(String a, String b) throws IOException {
+	public void writeFile(String a, String b, BufferedReader dis) throws IOException {
 		String directory = new String();
 		if (a.equals("d")) {
 			directory= defdirectory;
@@ -120,7 +120,6 @@ public class Operations {
 			if (f.exists()) {
 				File file = new File(directory+b);
 				if (file.exists()) {
-					BufferedReader dis = new BufferedReader(new InputStreamReader(System.in));
 					FileOutputStream fos = new FileOutputStream(file.toString(),true);
 					System.out.println("Please enter the data you want to write on the file (type %% to finish)");
 					String line = new String();
@@ -147,8 +146,8 @@ public class Operations {
 						}						
 						
 					}
-					dis.close();
-					fos.close();	
+					fos.close();
+					System.out.println("Done!");
 				}else {
 					System.out.println("Sorry, file: "+file+"doesn't exists.");
 				}

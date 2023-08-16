@@ -1,5 +1,7 @@
 package filehandling;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 import filehandling.*;
 
@@ -9,7 +11,7 @@ public class FileHandling {
 		Menus menu = new Menus();
 		Operations oper = new Operations();
 		Scanner sc = new Scanner(System.in);
-		int op;
+		int op=0;
 		char ex ='n';
 		String a;
 		String b;
@@ -17,13 +19,14 @@ public class FileHandling {
 		menu.welcome();		
 		do {			
 			do {
-				while(sc.hasNext()) {
-					System.out.println(sc.hasNext());
-				    sc.next();
-				}
 				menu.mainMenu(oper.defdirectory);
-				op = sc.nextInt();
-			}while ((int)op<1 || op>7);
+				try {
+					op = sc.nextInt();
+				}catch(Exception e) {
+					System.out.println(op);
+					System.out.println(e);
+				}
+			}while (op<1 || op>7);
 			if (op>0 && op<7) {
 				switch(op) {
 					case 1:
@@ -66,15 +69,20 @@ public class FileHandling {
 						}
 						break;
 					case 5:
+						
 						menu.insertDirectory();
 						a = sc.next();
 						menu.insertFile();
 						b=sc.next();
 						try {
-							oper.writeFile(a,b);
+							BufferedReader dis = new BufferedReader(new InputStreamReader(System.in));
+							oper.writeFile(a,b,dis);
+							dis.close();
 						}catch(Exception e) {
 							menu.sorry();
 						}
+						System.out.println("Write!");
+						
 						break;
 					case 6:
 						menu.insertDirectory();
