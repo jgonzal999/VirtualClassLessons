@@ -3,12 +3,14 @@ package filehandling;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.*;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -118,33 +120,33 @@ public class Operations {
 			if (f.exists()) {
 				File file = new File(directory+b);
 				if (file.exists()) {
-					DataInputStream dis = new DataInputStream(System.in);
+					BufferedReader dis = new BufferedReader(new InputStreamReader(System.in));
 					FileOutputStream fos = new FileOutputStream(file.toString(),true);
 					System.out.println("Please enter the data you want to write on the file (type %% to finish)");
-					int ch;
+					String line = new String();
 					char escape= '%';
-					int lastch=0;
+					char lastch=' ';
 					boolean exit=false;
 					fos.write((int)'\n');
-					while(!((ch = dis.read()) == '\n' && exit)) {		// when we hit enter key it will stop reading data. 
-						if(!exit) {
-							if (ch==escape) {
+					while(!exit) {		// when we hit enter key it will stop reading data. 
+						line = dis.readLine();
+						for (int i=0;i<line.length();i++) {
+							if (line.charAt(i)==escape || exit) {
 								if (lastch!=escape) {
-									lastch =ch;
-								}else {
+									lastch =escape;
+								}else {	
 									exit=true;
 								}
 							}else{
 								if (lastch==escape) {
 									fos.write(lastch);	// in file automatically convert it
 								}
-								fos.write(ch);
-								lastch =ch;
+								fos.write(line.charAt(i));
+								lastch =line.charAt(i);
 							}
 						}						
 						
 					}
-					System.out.println(ch = dis.read());
 					dis.close();
 					fos.close();	
 				}else {

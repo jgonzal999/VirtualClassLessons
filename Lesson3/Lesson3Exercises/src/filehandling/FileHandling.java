@@ -8,19 +8,22 @@ public class FileHandling {
 	public static void main(String[] args) {
 		Menus menu = new Menus();
 		Operations oper = new Operations();
-		
+		Scanner sc = new Scanner(System.in);
 		int op;
 		char ex ='n';
 		String a;
 		String b;
 		//main
 		menu.welcome();		
-		do {
-			Scanner sc = new Scanner(System.in);
+		do {			
 			do {
+				while(sc.hasNext()) {
+					System.out.println(sc.hasNext());
+				    sc.next();
+				}
 				menu.mainMenu(oper.defdirectory);
 				op = sc.nextInt();
-			}while (op<1 || op>7);
+			}while ((int)op<1 || op>7);
 			if (op>0 && op<7) {
 				switch(op) {
 					case 1:
