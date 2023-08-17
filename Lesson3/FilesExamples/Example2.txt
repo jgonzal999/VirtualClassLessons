@@ -1,6 +1,5 @@
 
-Hi:
-This is an example the app can do
-I use double% for finish
-but only if is at the end of the line
-for example %
+
+Hi
+This is an example
+if I type 

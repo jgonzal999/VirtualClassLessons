@@ -23,8 +23,10 @@ public class FileHandling {
 				try {
 					op = sc.nextInt();
 				}catch(Exception e) {
-					System.out.println(op);
-					System.out.println(e);
+					op=7;
+					sc.reset();
+//					System.out.println(op);
+//					System.out.println(e);
 				}
 			}while (op<1 || op>7);
 			if (op>0 && op<7) {
@@ -68,21 +70,16 @@ public class FileHandling {
 							menu.sorry();
 						}
 						break;
-					case 5:
-						
+					case 5:						
 						menu.insertDirectory();
 						a = sc.next();
 						menu.insertFile();
 						b=sc.next();
 						try {
-							BufferedReader dis = new BufferedReader(new InputStreamReader(System.in));
-							oper.writeFile(a,b,dis);
-							dis.close();
+							oper.writeFile(a,b,sc);
 						}catch(Exception e) {
 							menu.sorry();
 						}
-						System.out.println("Write!");
-						
 						break;
 					case 6:
 						menu.insertDirectory();
@@ -105,6 +102,7 @@ public class FileHandling {
 				}
 			}
 		}while(op!=7);
+		sc.close();
 		menu.bye();
 
 	}

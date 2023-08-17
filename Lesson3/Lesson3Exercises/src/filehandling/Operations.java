@@ -18,6 +18,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Scanner;
 
 public class Operations {
 	
@@ -98,12 +99,12 @@ public class Operations {
 			}
 	
 		}else {
-			System.out.println("Sorry, Directory:\n "+a.replace("//", "/")+"\n doesn't exist.");
+			System.out.println("Sorry, Directory: "+a.replace("//", "/")+" doesn't exist.");
 		}
 		
 	}
 	
-	public void writeFile(String a, String b, BufferedReader dis) throws IOException {
+	public void writeFile(String a, String b, Scanner dis) throws IOException {
 		String directory = new String();
 		if (a.equals("d")) {
 			directory= defdirectory;
@@ -126,9 +127,10 @@ public class Operations {
 					char escape= '%';
 					char lastch=' ';
 					boolean exit=false;
-					fos.write((int)'\n');
+					
 					while(!exit) {		// when we hit enter key it will stop reading data. 
-						line = dis.readLine();
+						fos.write((int)'\n');
+						line = dis.nextLine();
 						for (int i=0;i<line.length();i++) {
 							if (line.charAt(i)==escape || exit) {
 								if (lastch!=escape) {
@@ -149,10 +151,10 @@ public class Operations {
 					fos.close();
 					System.out.println("Done!");
 				}else {
-					System.out.println("Sorry, file: "+file+"doesn't exists.");
+					System.out.println("Sorry, file: "+file+" doesn't exists.");
 				}
 			}else {
-				System.out.println("Sorry, directory: "+f.getName().replace("//", "/")+"doesn't exists.");
+				System.out.println("Sorry, directory: "+f.getName().replace("//", "/")+" doesn't exists.");
 			}
 		}catch (Exception e) {
     		System.out.println("Sorry, try again");
