@@ -15,15 +15,18 @@ public class MergeSort {
 	}
 	
 	void merge(int[] arr,int l,int m, int r) {
-		System.out.println("Merge: "+l+" "+m+" "+r);
+//		System.out.println("Merge: "+l+" "+m+" "+r);
 		int n1=m-l+1;
 		int n2 = r-m;
 		int lArray[]=new int[n1];
 		int rArray[]=new int[n2];
+		int index;
 		for(int i=0;i<n1;++i)
 			lArray[i]=arr[l+i];
-		for(int j=0;j<n2;++j)
+		for(int j=0;j<n2;++j) {
+//			System.out.println("index: "+(m+j));
 			rArray[j]=arr[m+1+j];
+		}		
 		int i=0,j=0;
 		int k=l;
 		while(i<n1&&j<n2) {
@@ -51,7 +54,7 @@ public class MergeSort {
 	
 	void sort(int[] arr,int l, int r) {
 		if (l<r) {
-			System.out.println("Sort: "+l+" "+r);
+//			System.out.println("Sort: "+l+" "+r);
 			int m=(l+r)/2;
 			sort(arr,l,m);
 			sort(arr,m+1,r);
@@ -63,7 +66,7 @@ public class MergeSort {
 		int[] randomlist =createnumbers();
 		System.out.println("Random List Elements: "+Arrays.toString(randomlist));
 		MergeSort obj =new MergeSort();
-		obj.sort(randomlist,0,randomlist.length);
+		obj.sort(randomlist,0,randomlist.length-1);
 		System.out.println("Sorted List Elements: "+Arrays.toString(randomlist));
 
 	}
