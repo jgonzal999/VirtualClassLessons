@@ -3,6 +3,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FixBugs {
+	static String[] arr = {"1. I wish to review my expenditure",
+            "2. I wish to add my expenditure",
+            "3. I wish to delete my expenditure",
+            "4. I wish to sort the expenditures",
+            "5. I wish to search for a particular expenditure",
+            "6. Close the application"
+    };
+	static int  slen = arr.length;
 
 	public static void main(String[] args) {
         /*System.out.println("Hello World!");*/
@@ -13,15 +21,7 @@ public class FixBugs {
 
     }
     private static void optionsSelection() {
-        String[] arr = {"1. I wish to review my expenditure",
-                "2. I wish to add my expenditure",
-                "3. I wish to delete my expenditure",
-                "4. I wish to sort the expenditures",
-                "5. I wish to search for a particular expenditure",
-                "6. Close the application"
-        };
-        int[] arr1 = {1,2,3,4,5,6};
-        int  slen = arr1.length;
+                  
         for(int i=0; i<slen;i++){
             System.out.println(arr[i]);
             // display the all the Strings mentioned in the String array
@@ -44,7 +44,7 @@ public class FixBugs {
                         System.out.println("Your saved expenses are listed below: \n");
                         System.out.println(expenses+"\n");
                         optionsSelection();
-                        break;
+//                        break;
                     case 2:
                         System.out.println("Enter the value to add your Expense: \n");
                         int value = sc.nextInt();
