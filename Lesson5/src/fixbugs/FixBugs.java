@@ -85,30 +85,30 @@ public class FixBugs {
         int leng = arrayList.size();
         System.out.println("Enter the expense you need to search:\t");
         //Complete the method
+        ArrayList<Integer> arr = new ArrayList<Integer>();
     }
     private static void sortExpenses(ArrayList<Integer> arrayList) {
         int arrlength =  arrayList.size();
        //Complete the method. The expenses should be sorted in ascending order.
+        ArrayList<Integer> arr = new ArrayList<Integer>();
     }
     int partition(ArrayList<Integer> arr,int low, int high) {
-		int pivot =arr.indexOf(high);
+		int pivot =arr.get(high);
 		int i=low-1;
 		for (int j=low;j<high;j++) {
-			if (arr[j]<=pivot) {
+			if (arr.get(j)<=pivot) {
 				i++;
-				int temp =arr[i];
-				arr[i]=arr[j];
-				arr[j]=temp;						
+				int temp =arr.get(i);
+				arr.set(i,arr.get(j));
+				arr.set(j,temp);						
 			}
 		}
-		int temp = arr[i+1];
-		arr[i+1]=arr[high];
-		arr[high]=temp;		
+		int temp = arr.get(i+1);
+		arr.set((i+1),arr.get(high));
+		arr.set(high,temp);		
 		return i+1;
 	}	
-	void sort(ArrayList<Integer> arrayList,int low,int high) {
-		ArrayList<Integer> arr = new ArrayList<Integer>();
-		arr.addAll(arrayList);
+	void sort(ArrayList<Integer> arr,int low,int high) {
 		if(low<high) {
 			int pi=partition(arr,low,high);
 			sort(arr,low,pi-1);
