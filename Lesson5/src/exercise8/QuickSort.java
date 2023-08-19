@@ -22,14 +22,12 @@ public class QuickSort {
 				i++;
 				int temp =arr[i];
 				arr[i]=arr[j];
-				arr[j]=temp;
-						
+				arr[j]=temp;						
 			}
 		}
 		int temp = arr[i+1];
 		arr[i+1]=arr[high];
-		arr[high]=temp;
-		
+		arr[high]=temp;		
 		return i+1;
 	}
 	

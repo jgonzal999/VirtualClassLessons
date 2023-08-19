@@ -11,79 +11,71 @@ public class FixBugs {
             "6. Close the application"
     };
 	static int  slen = arr.length;
-
+	static ArrayList<Integer> expenses = new ArrayList<Integer>();
+    static int options=0;
+// Main
 	public static void main(String[] args) {
         /*System.out.println("Hello World!");*/
         System.out.println("\n**************************************\n");
         System.out.println("\tWelcome to TheDesk \n");
         System.out.println("**************************************");
-        optionsSelection();
-
-    }
-    private static void optionsSelection() {
-                  
-        for(int i=0; i<slen;i++){
-            System.out.println(arr[i]);
-            // display the all the Strings mentioned in the String array
-        }
-        ArrayList<Integer> arrlist = new ArrayList<Integer>();
-        ArrayList<Integer> expenses = new ArrayList<Integer>();
+        //initial values
         expenses.add(1000);
         expenses.add(2300);
         expenses.add(45000);
         expenses.add(32000);
         expenses.add(110);
-        expenses.addAll(arrlist);
+        optionsSelection();
+
+    }
+// Methods
+    private static void optionsSelection() {
+    	Scanner sc = new Scanner(System.in);
+        for(int i=0; i<slen;i++){
+            System.out.println(arr[i]);
+        }        
         System.out.println("\nEnter your choice:\t");
-        Scanner sc = new Scanner(System.in);
-        int  options =  sc.nextInt();
-        for(int j=1;j<=slen;j++){
-            if(options==j){
-                switch (options){
-                    case 1:
+        try {
+        	options =  sc.nextInt();
+        }catch (Exception e) {
+        	options=100;
+        }
+        switch (options){
+        	case 1:
                         System.out.println("Your saved expenses are listed below: \n");
                         System.out.println(expenses+"\n");
                         optionsSelection();
-//                        break;
-                    case 2:
+            case 2:
                         System.out.println("Enter the value to add your Expense: \n");
                         int value = sc.nextInt();
                         expenses.add(value);
                         System.out.println("Your value is updated\n");
-                        expenses.addAll(arrlist);
                         System.out.println(expenses+"\n");
                         optionsSelection();
-
-                        break;
-                    case 3:
+            case 3:
                         System.out.println("You are about the delete all your expenses! \nConfirm again by selecting the same option...\n");
                         int con_choice = sc.nextInt();
                         if(con_choice==options){
-                               expenses.clear();
-                            System.out.println(expenses+"\n");
+                            expenses.clear();
+                            System.out.println("Expenses: "+expenses+"\n");
                             System.out.println("All your expenses are erased!\n");
                         } else {
                             System.out.println("Oops... try again!");
                         }
                         optionsSelection();
-                        break;
-                    case 4:
+            case 4:
                         sortExpenses(expenses);
                         optionsSelection();
-                        break;
-                    case 5:
+            case 5:
                         searchExpenses(expenses);
                         optionsSelection();
-                        break;
-                    case 6:
+            case 6:
                         closeApp();
                         break;
-                    default:
-                        System.out.println("You have made an invalid choice!");
-                        break;
-                }
-            }
-        }
+            default:
+                        System.out.println("You have made an invalid choice! Please try again\n");
+                        optionsSelection();
+           }
 
     }
     private static void closeApp() {
@@ -98,5 +90,30 @@ public class FixBugs {
         int arrlength =  arrayList.size();
        //Complete the method. The expenses should be sorted in ascending order.
     }
+    int partition(ArrayList<Integer> arr,int low, int high) {
+		int pivot =arr.indexOf(high);
+		int i=low-1;
+		for (int j=low;j<high;j++) {
+			if (arr[j]<=pivot) {
+				i++;
+				int temp =arr[i];
+				arr[i]=arr[j];
+				arr[j]=temp;						
+			}
+		}
+		int temp = arr[i+1];
+		arr[i+1]=arr[high];
+		arr[high]=temp;		
+		return i+1;
+	}	
+	void sort(ArrayList<Integer> arrayList,int low,int high) {
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		arr.addAll(arrayList);
+		if(low<high) {
+			int pi=partition(arr,low,high);
+			sort(arr,low,pi-1);
+			sort(arr,pi+1,high);
+		}
+	}
 
 }
